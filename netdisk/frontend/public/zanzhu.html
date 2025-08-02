@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>赞助作者 - zilu的网盘</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .back-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .intro h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        .intro p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .sponsor-info {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .qq-info {
+            margin-bottom: 30px;
+        }
+
+        .qq-info h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .qq-number {
+            font-size: 24px;
+            color: #667eea;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .qr-section h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        .qr-code {
+            margin: 20px 0;
+        }
+
+        .qr-code img {
+            width: 200px;
+            height: 200px;
+            border-radius: 10px;
+            border: 3px solid #ddd;
+            max-width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .qr-code img {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="/" class="back-btn">← 返回主页</a>
+            <h1>💝 赞助作者</h1>
+        </div>
+        
+        <div class="content">
+            <div class="intro">
+                <h2>感谢您的支持！</h2>
+                <p>如果您觉得这个网盘项目对您有帮助，欢迎赞助支持作者的开发工作。</p>
+                <p>您的每一份支持都是我们继续改进的动力！</p>
+            </div>
+            
+            <div class="sponsor-info">
+                <div class="qq-info">
+                    <h3>QQ联系方式</h3>
+                    <div class="qq-number" id="qqNumber">123456789</div>
+                </div>
+                
+                <div class="qr-section">
+                    <h3>赞助二维码</h3>
+                    <div class="qr-code">
+                        <img id="qrImage" src="https://via.placeholder.com/200x200/667eea/FFFFFF?text=赞助二维码" alt="赞助二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 页面加载时读取赞助信息
+        window.addEventListener('load', function() {
+            fetch('/sponsor_info.txt')
+                .then(response => response.text())
+                .then(text => {
+                    const lines = text.trim().split('\n');
+                    if (lines.length >= 2) {
+                        const qqNumber = lines[0].trim();
+                        const qrPath = lines[1].trim();
+                        
+                        document.getElementById('qqNumber').textContent = qqNumber;
+                        document.getElementById('qrImage').src = qrPath;
+                    }
+                })
+                .catch(error => {
+                    console.log('使用默认赞助信息');
+                });
+        });
+    </script>
+</body>
+</html>
+    
+    
