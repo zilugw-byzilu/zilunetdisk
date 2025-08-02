@@ -35,3 +35,6 @@ A：暂未制作
 
 Q:赞助作者怎么改数据
 A:修改\frontend\public\sponsor_info.txt，第一行qq号，第二行二维码路径
+## 依赖
+nodejs
+python
